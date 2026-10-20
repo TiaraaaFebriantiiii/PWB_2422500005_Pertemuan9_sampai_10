@@ -8,7 +8,7 @@ class Produk_controller extends CI_Controller {
         is_admin_logged_in();
         $this->load->model('produk_model');
         $this->load->model('produk_kategori_model');
-        $this->load->model('produk_gambar_model'); // Sesuai nama file modul (huruf kecil)
+        $this->load->model('produk_gambar_model'); 
     }
 
     public function index() {
@@ -39,7 +39,7 @@ class Produk_controller extends CI_Controller {
     private function __simpan_produk() {
         $data = [
             'nama' => ucwords($this->input->post('nama_produk')),
-            'categori_id' => $this->input->post('kategori_produk'), // SESUAI MODUL (Ubah ke 'categori_id' jika DB Anda typo)
+            'categori_id' => $this->input->post('kategori_produk'), 
             'harga' => $this->input->post('harga_produk'),
             'stok' => $this->input->post('stok_produk'),
             'deskripsi' => ucfirst($this->input->post('deskripsi_produk'))
@@ -96,7 +96,7 @@ class Produk_controller extends CI_Controller {
                 $data['title'] = 'Ubah produk';
                 $data['produk'] = $produk;
                 $data['list_kategori'] = $this->produk_kategori_model->get_all();
-                $data['gambar_model'] = $this->produk_gambar_model; // Sesuai modul
+                $data['gambar_model'] = $this->produk_gambar_model; 
                 
                 $this->load->view('administrator/templates/header', $data);
                 $this->load->view('administrator/templates/sidebar');
@@ -112,7 +112,7 @@ class Produk_controller extends CI_Controller {
     private function __ubah_produk($id) {
         $data = [
             'nama' => ucwords($this->input->post('nama_produk')),
-            'categori_id' => $this->input->post('kategori_produk'), // SESUAI MODUL
+            'categori_id' => $this->input->post('kategori_produk'), 
             'harga' => $this->input->post('harga_produk'),
             'stok' => $this->input->post('stok_produk'),
             'deskripsi' => ucfirst($this->input->post('deskripsi_produk'))
@@ -171,10 +171,6 @@ class Produk_controller extends CI_Controller {
         }
     }
 
-    // ==========================================================
-    // SOLUSI TUGAS MODUL: Menambahkan sintak agar gambar dapat 
-    // diganti ketika diklik button ubah
-    // ==========================================================
     public function edit_gambar() {
         header('Content-Type: application/json');
         
@@ -202,7 +198,6 @@ class Produk_controller extends CI_Controller {
                 $path_lama = './uploads/produk/' . $gambar_lama['nama_gambar'];
                 if (file_exists($path_lama)) @unlink($path_lama);
                 
-                // Update database dengan nama file baru (Bagian inti tugas)
                 $this->produk_gambar_model->update($id_gambar, ['nama_gambar' => $new_filename]);
                 echo json_encode(['success' => true, 'message' => 'Gambar berhasil diubah']);
             } else {

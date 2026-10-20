@@ -17,20 +17,16 @@
 <body class="hold-transition login-page">
 <div class="login-box">
     <div class="login-logo">
-        <!-- PERBAIKAN 1: Ganti href agar tidak error 404 -->
-        <a href="<?= base_url('admin/login') ?>"><b>Tiara</b> Pet Shop</a>
+        <a href="<?= base_url('admin/login') ?>"><b>Tiara</b> Clothing</a>
     </div>
-    <!-- /.login-logo -->
     <div class="card">
         <div class="card-body login-card-body">
             <p class="login-box-msg">Sign in to start your session</p>
 
-            <!-- VALIDASI & FLASHDATA (Sudah Benar) -->
             <?php if ($this->session->flashdata('message')) : ?>
                 <?= $this->session->flashdata('message') ?>
             <?php endif; ?>
 
-            <!-- PERBAIKAN 2: Tambahkan action form secara eksplisit -->
             <form action="<?= base_url('admin/login') ?>" method="post">
                 <div class="input-group mb-3">
                     <input class="form-control" id="inputUsername" name="inputUsername" type="text" placeholder="Username" required />
@@ -51,7 +47,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-12"> <!-- PERBAIKAN 3: Ubah col-4 jadi col-12 agar tombol full width -->
+                    <div class="col-12"> 
                         <button type="submit" class="btn btn-primary btn-block">Sign In</button>
                     </div>
                     <!-- /.col -->

@@ -62,7 +62,7 @@
                                         <label for="deskripsi_produk" class="form-label">Deskripsi</label>
                                         <textarea name="deskripsi_produk" id="deskripsi_produk" cols="30" rows="10" class="form-control"></textarea>
                                     </div>
-                                    <button type="submit" class="btn btn-primary">Tambah Button</button>
+                                    <button type="submit" class="btn btn-primary">Tambah</button>
                                     <a href="<?= base_url('admin/produk') ?>" class="btn btn-danger">Kembali</a>
                                 </form>
                             </p>

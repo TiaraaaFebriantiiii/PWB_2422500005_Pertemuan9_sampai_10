@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.2
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Waktu pembuatan: 07 Okt 2026 pada 07.04
--- Versi server: 8.0.30
--- Versi PHP: 7.4.19
+-- Generation Time: Oct 17, 2026 at 07:04 AM
+-- Server version: 8.0.30
+-- PHP Version: 7.4.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,13 +20,11 @@ SET time_zone = "+00:00";
 --
 -- Database: `dbpwb`
 --
-CREATE DATABASE IF NOT EXISTS `dbpwb` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
-USE `dbpwb`;
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `administrator`
+-- Table structure for table `administrator`
 --
 
 CREATE TABLE `administrator` (
@@ -37,7 +35,7 @@ CREATE TABLE `administrator` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Dumping data untuk tabel `administrator`
+-- Dumping data for table `administrator`
 --
 
 INSERT INTO `administrator` (`id_admin`, `full_name`, `username`, `password`) VALUES
@@ -46,7 +44,7 @@ INSERT INTO `administrator` (`id_admin`, `full_name`, `username`, `password`) VA
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kategori`
+-- Table structure for table `kategori`
 --
 
 CREATE TABLE `kategori` (
@@ -56,7 +54,7 @@ CREATE TABLE `kategori` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Dumping data untuk tabel `kategori`
+-- Dumping data for table `kategori`
 --
 
 INSERT INTO `kategori` (`id_kategori`, `nama`, `deskripsi`) VALUES
@@ -66,7 +64,7 @@ INSERT INTO `kategori` (`id_kategori`, `nama`, `deskripsi`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `produk`
+-- Table structure for table `produk`
 --
 
 CREATE TABLE `produk` (
@@ -79,7 +77,7 @@ CREATE TABLE `produk` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Dumping data untuk tabel `produk`
+-- Dumping data for table `produk`
 --
 
 INSERT INTO `produk` (`id_produk`, `nama`, `deskripsi`, `categori_id`, `harga`, `stok`) VALUES
@@ -88,7 +86,7 @@ INSERT INTO `produk` (`id_produk`, `nama`, `deskripsi`, `categori_id`, `harga`, 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `produk_gambar`
+-- Table structure for table `produk_gambar`
 --
 
 CREATE TABLE `produk_gambar` (
@@ -98,83 +96,85 @@ CREATE TABLE `produk_gambar` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Dumping data untuk tabel `produk_gambar`
+-- Dumping data for table `produk_gambar`
 --
 
 INSERT INTO `produk_gambar` (`id_gambar`, `nama_gambar`, `produk_id`) VALUES
-(4, 'produk_4_0.jpg', 4);
+(7, 'produk-4-1792217759-0.jpg', 4),
+(8, 'produk-4-8-1792218307.jpg', 4),
+(10, 'produk_4_10_1792220369.jpg', 4);
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indeks untuk tabel `administrator`
+-- Indexes for table `administrator`
 --
 ALTER TABLE `administrator`
   ADD PRIMARY KEY (`id_admin`);
 
 --
--- Indeks untuk tabel `kategori`
+-- Indexes for table `kategori`
 --
 ALTER TABLE `kategori`
   ADD PRIMARY KEY (`id_kategori`);
 
 --
--- Indeks untuk tabel `produk`
+-- Indexes for table `produk`
 --
 ALTER TABLE `produk`
   ADD PRIMARY KEY (`id_produk`),
   ADD KEY `fk_produk_kategori` (`categori_id`);
 
 --
--- Indeks untuk tabel `produk_gambar`
+-- Indexes for table `produk_gambar`
 --
 ALTER TABLE `produk_gambar`
   ADD PRIMARY KEY (`id_gambar`),
   ADD KEY `produk_id` (`produk_id`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `administrator`
+-- AUTO_INCREMENT for table `administrator`
 --
 ALTER TABLE `administrator`
   MODIFY `id_admin` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `kategori`
+-- AUTO_INCREMENT for table `kategori`
 --
 ALTER TABLE `kategori`
   MODIFY `id_kategori` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT untuk tabel `produk`
+-- AUTO_INCREMENT for table `produk`
 --
 ALTER TABLE `produk`
   MODIFY `id_produk` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT untuk tabel `produk_gambar`
+-- AUTO_INCREMENT for table `produk_gambar`
 --
 ALTER TABLE `produk_gambar`
-  MODIFY `id_gambar` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_gambar` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `produk`
+-- Constraints for table `produk`
 --
 ALTER TABLE `produk`
   ADD CONSTRAINT `fk_produk_kategori` FOREIGN KEY (`categori_id`) REFERENCES `kategori` (`id_kategori`) ON DELETE RESTRICT ON UPDATE CASCADE,
   ADD CONSTRAINT `produk_ibfk_1` FOREIGN KEY (`categori_id`) REFERENCES `kategori` (`id_kategori`) ON DELETE RESTRICT ON UPDATE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `produk_gambar`
+-- Constraints for table `produk_gambar`
 --
 ALTER TABLE `produk_gambar`
   ADD CONSTRAINT `produk_gambar_ibfk_1` FOREIGN KEY (`produk_id`) REFERENCES `produk` (`id_produk`) ON DELETE CASCADE ON UPDATE CASCADE;

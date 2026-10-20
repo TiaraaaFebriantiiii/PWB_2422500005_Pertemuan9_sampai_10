@@ -18,7 +18,6 @@ class Produk_gambar_model extends CI_Model {
         return $this->db->get($this->_table)->row_array();
     }
 
-    // Fungsi ini WAJIB ada untuk menyelesaikan TUGAS modul
     public function update($id, $data) {
         $this->db->where('id_gambar', $id);
         return $this->db->update($this->_table, $data);

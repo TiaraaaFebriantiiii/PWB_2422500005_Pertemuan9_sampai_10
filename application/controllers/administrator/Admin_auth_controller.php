@@ -10,7 +10,6 @@ class Admin_auth_controller extends CI_Controller {
     }
 
     public function index() {
-        // Jika sudah login, redirect ke dashboard
         if ($this->session->userdata('admin_login')) {
             redirect('admin');
         }
@@ -21,10 +20,8 @@ class Admin_auth_controller extends CI_Controller {
         $this->form_validation->set_rules('inputPassword', 'Password', 'required');
 
         if ($this->form_validation->run() == FALSE) {
-            // Tampilkan halaman login
             $this->load->view('administrator/login', $data);
         } else {
-            // Proses login
             $this->__login();
         }
     }
@@ -44,7 +41,6 @@ class Admin_auth_controller extends CI_Controller {
             );
             $this->session->set_userdata($session_data);
             
-            // Redirect ke dashboard (sesuai routes: $route['admin'] = 'administrator/Admin_dashboard_controller')
             redirect('admin');
         } else {
             $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">Username dan password salah!!<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');

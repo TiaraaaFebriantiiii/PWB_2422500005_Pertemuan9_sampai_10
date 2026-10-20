@@ -153,7 +153,6 @@
 </div>
 <!-- /.content-wrapper -->
 
-<!-- Modal Bootstrap untuk Ubah Gambar -->
 <div class="modal fade" id="modalEditGambar" tabindex="-1" role="dialog" aria-labelledby="modalEditGambarLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -201,12 +200,8 @@
     </div>
 </div>
 
-<!-- Script untuk Preview dan Modal Edit Gambar -->
 <script>
 $(document).ready(function() {
-    // ============================================
-    // PREVIEW GAMBAR BARU (Saat pilih file di "Tambah Gambar Produk")
-    // ============================================
     $('#gambar_produk').on('change', function() {
         $('#preview_gambar_baru').html('');
         
@@ -237,9 +232,6 @@ $(document).ready(function() {
     });
 });
 
-// ============================================
-// MODAL EDIT GAMBAR
-// ============================================
 function openEditModal(id_gambar, image_url) {
     document.getElementById('edit_id_gambar').value = id_gambar;
     document.getElementById('current_image').src = image_url;
@@ -249,7 +241,6 @@ function openEditModal(id_gambar, image_url) {
     $('#modalEditGambar').modal('show');
 }
 
-// Preview gambar baru di modal
 document.getElementById('edit_gambar_file').addEventListener('change', function(e) {
     var file = e.target.files[0];
     if (file) {
@@ -262,7 +253,6 @@ document.getElementById('edit_gambar_file').addEventListener('change', function(
     }
 });
 
-// Submit form edit gambar via AJAX
 function submitEditGambar() {
     var formData = new FormData(document.getElementById('formEditGambar'));
     
