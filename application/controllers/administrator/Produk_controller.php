@@ -70,7 +70,7 @@ class Produk_controller extends CI_Controller {
                 $config['max_size'] = 5000;
                 $config['file_name'] = 'produk_' . $id_produk . '_' . time() . '_' . $i;
 
-                $this->load->library('upload', $config);
+                $this->load->library('upload', $config); 
 
                 if ($this->upload->do_upload('file')) {
                     $uploadData = $this->upload->data();
